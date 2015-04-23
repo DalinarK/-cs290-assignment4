@@ -4,153 +4,26 @@
   <meta charset="UTF-8">
   <title>Sample document</title>
   <link rel="stylesheet" href="style1.css">
+  <script src='javscript.js'></script>
   </head>
 
+
 <script language="JavaScript">
-
-/**
-* Create a constructor function for a `MessageLog` object.
-* @constructor
-* @param {string} user - The user associated to the message log
-* The string indicating the user should be stored in the user property of the
-* object instances.
-*
-* In addition, the following methods should be
-* callable on a MessageLog object:
-* logMessage( {string} messageText, {number} direction) - This should log a
-* message
-* as either being sent or received. A direction of 0 indicates it is a message
-* the user sent. A direction of 1 indicates it is a message the user received.
-* Behavior for other numbers is undefined.
-* getSentMessage({number} n) - returns as a string, the content of the nth most
-* recently sent message. To conserve memory, the object should only keep the
-* last 5 message. n=0 retrieves the most recent n=4 retrieves the least recent
-* of the 5.
-* totalSent() - returns an integer indicating the total number of messages sent
-* totalReceived() - returns an integer indicating the total number of messages
-* received
-*/
-
-
-
-function MessageLog(input)
-{
-  this.user = input;
-
-  //array stores the messages recieved. Seperate var keeping track of size because I can't get array.length to work?
-  this.callLogSent = [];
-  this.callLogSent.length = 5;
-  this.callLogSentSize = 0;
-  this.sentLifetime = 0;
-
-  //array stores the messages recieved. Seperate var keeping track of size because I can't get array.length to work?
-  this.callLogReceived = [];
-  this.callLogReceivedSize = 0;
-  this.receivedLifetime = 0;
-
-  this.totalSent = function ()
-  {
-    return this.sentLifetime;
-  };
-
-  this.totalReceived = function ()
-  {
-    return this.receivedLifetime;
-  };
-
-  this.totalSen
-
-  this.getSentMessage = function (index)
-  {
-    return this.callLogSent[index];
-    //document.write(this.callLogSentSize);
-  };
-
-
-  //adds messages to either the sent or received callLog arrays based on the parameter (1 or 0). 
-  this.logMessage = function (inputString, direction)
-  {
-
-    message = inputString;
-    
-    if (direction === 1)
-    {
-
-      if (this.callLogReceivedSize >= 5)
-       {
-        //document.write("shifting items");
-        this.callLogReceived.pop(); 
-        this.callLogReceivedSize--;  
-       }
-
-       // the only method built into Array is push/pop the end of the array (stack). 
-       // the implementation calls for a queue so by reversing, adding to array,
-       // then reversing again, the array behaves like a queue when pop is called.
-      this.callLogReceived.reverse();
-      this.callLogReceived.push(inputString);
-      this.callLogReceivedSize++;
-      this.receivedLifetime++;
-      this.callLogReceived.reverse();
-
-    }
-    else if (direction === 0)
-    {
-      if (this.callLogSentSize >= 5)
-       {
-        //document.write("shifting items");
-        this.callLogSent.pop(); 
-        this.callLogSentSize--;  
-       }
-
-      this.callLogSent.reverse();
-      this.callLogSent.push(inputString);
-      this.callLogSentSize++;
-      this.sentLifetime++;
-      this.callLogSent.reverse();
-    }
-    else 
-    {
-      direction = undefined ;
-    }
-  
-  };
-};
-
-
-var object1 = new MessageLog("dogcatcar");
-
-object1.logMessage("one", 1);
-
-object1.logMessage("two", 1);
-
-debugger; 
-
-object1.logMessage("three", 1);
-
-object1.logMessage("four", 1);
-
-object1.logMessage("five", 1);
-
-object1.logMessage("six", 1);
-
-document.write(object1.totalReceived());
-
-console.log(object1.totalReceived());
-//document.write(object1.getSentMessage(4));
-
-
-// outputstring = object1.testa
-// document.write(outputstring);
-//messageLog.test;
-
-document.write(<br> end of program);
+document.write("<br> Human,  start of program");
 
 </script>
-  <body>
-    <p>
-      <strong>C</strong>ascading
-      <strong>S</strong>tyle
-      <strong>S</strong>heets
-    </p>
-  </body>
+
+<body>
+  <div id="output">test</div>
+  <form>
+    <input type = 'text' name= 'demo-input'>
+    <input type= 'button' name='save' onclick='saveDemoInput()' value='Save Text'>
+    <input type= 'button' name='loadlocal' onclick='displayLocalStorage()' value ='Load Local'>
+  </form>
+</body>
+
+<script language="JavaScript">
+document.write("<br> Human,  end of program");
+</script>
+
 </html>
