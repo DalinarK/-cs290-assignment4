@@ -21,20 +21,20 @@ function addSport (settings, sport)
 	return false;
 }
 
-function liSport(sport) 
+function liSport(doge) 
 {
 	
 	var dl = document.createElement('dl');
-	var entry = dlEntry('Name', sport.sName);
+	var entry = dlEntry('Name', doge.sName);
 	dl.appendChild(entry.dt);
 	dl.appendChild(entry.dd);
-	entry = dlEntry('Minimum Temperature', sport.minTemp);
+	entry = dlEntry('Minimum Temperature', doge.minTemp);
 	dl.appendChild(entry.dt);
 	dl.appendChild(entry.dd);
-	entry = dlEntry('Maximum Temperature', sport.maxTemp);
+	entry = dlEntry('Maximum Temperature', doge.maxTemp);
 	dl.appendChild(entry.dt);
 	dl.appendChild(entry.dd);
-	entry = dlEntry('Maximum Chance of Rain', sport.rainMax);
+	entry = dlEntry('Maximum Chance of Rain', doge.rainMax);
 	dl.appendChild(entry.dt);
 	dl.appendChild(entry.dd);
 	return dl;
@@ -71,10 +71,10 @@ function saveSport() {
 function createSportList(ul)
 {
 	
-	settings.sports.forEach(function(s) 
+	settings.sports.forEach(function(howDoesThisVariableWork) 
 	{
 		var li = document.createElement('li');
-		li.appendChild(liSport(s));
+		li.appendChild(liSport(howDoesThisVariableWork));
 		ul.appendChild(li);
 	});
 }

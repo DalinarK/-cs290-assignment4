@@ -10,11 +10,31 @@
 <script language="JavaScript">
 
 </script>
-
+	<section>
+		<h1> Human, how many pages do you wish to display?<h1>
+		<form>
+		<select id = "displayPages" onchange="test()">
+		  <option value = 1>Pick one</option>
+		  <option value= 1>1</option>
+		  <option value= 2>2</option>
+		  <option value= 3>3</option>
+		  <option value= 4>4</option>
+		  <option value= 5>5</option>
+		</select>
+		</form>
+		<p></p>
+	<section>
   	<section>
+  		<input type= 'button' name='httppRequest' onclick='test()' value='Display Choice'>
   		<input type= 'button' name='httppRequest' onclick='pullGithub()' value='Request GIST'>
     	<input type= 'button' name='getGitHub' onclick='saveGists()' value ='Save gists'>
     	<input type= 'button' name='getGitHub' onclick='printLanguage()' value ='Print urls'>
+    	<input type= 'button' name='getGitHub' onclick='displayGists()' value ='Display Gists'>
+  	</section>
+
+  	<section>
+  		<ul id= "gistsList" >
+  		</ul>
   	</section>
 
   </html>
