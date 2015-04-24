@@ -122,19 +122,32 @@ function liGists(gists)
 function createGistsList(ul)
   {
     index = 0;
+    var alreadyFavorited = 0;
 
     gistPulls.forEach(function(s) 
     {
-      var favorite = document.createElement("button");
-      favorite.setAttribute('id', index); 
-      favorite.setAttribute("value", index)
-      favorite.setAttribute("onclick", 'saveToFavorites(this)');
-      var li = document.createElement('li');
-      li.appendChild(liGists(s));
-      li.appendChild(favorite);
-      favorite.innerHTML = favorite.innerHTML + 'Add to favorites';
-      ul.appendChild(li);
+      alreadyFavorited = 0;
 
+      for (var counter = 0; counter < favoriteGists.length; counter++)
+      {
+        if (favoriteGists[counter] == index)
+        {
+          alreadyFavorited = 1
+        }
+      }
+
+      if (!alreadyFavorited)
+      { 
+        var favorite = document.createElement("button");
+        favorite.setAttribute('id', index); 
+        favorite.setAttribute("value", index)
+        favorite.setAttribute("onclick", 'saveToFavorites(this)');
+        var li = document.createElement('li');
+        li.appendChild(liGists(s));
+        li.appendChild(favorite);
+        favorite.innerHTML = favorite.innerHTML + 'Add to favorites';
+        ul.appendChild(li);
+      }
       index++;
 
     });
