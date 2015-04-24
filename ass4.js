@@ -355,8 +355,8 @@ function filteredCreateGistsList(ul)
   for (var i = 0; i < filteredGists.length; i++)
   {
     var favorite = document.createElement("button");
-    favorite.setAttribute('id', index); 
-    favorite.setAttribute('value', index)
+    favorite.setAttribute('name', index); 
+    favorite.setAttribute('value', filteredGists[i]);
     favorite.setAttribute('onclick', 'saveToFavorites(this)');
     var li = document.createElement('li');
     li.appendChild(filteredLiGists(filteredGists[i]));
