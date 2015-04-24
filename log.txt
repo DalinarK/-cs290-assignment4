@@ -1,0 +1,7 @@
+Start:Sun, 23 Apr 2015 12:05:40 -0700
+End: Sun, 23 Apr 2015 23:51:16 -0700
+Tasks:  finished favorites. got filtered display to work. broke favorites. fixed favorites. finished remove favorites. bug fixes. finished filtered search. Added url links to links. started throwing errors. No clue how I fixed it. 
+
+Start: Sun, 22 Apr 2015 14:05:55 -0700
+End: Sun, 23 Apr 2015 01:23:55 -0700
+Tasks: Sarted, finished getting gist in program. printed all resultsto one page.
