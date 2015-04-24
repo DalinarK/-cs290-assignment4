@@ -101,6 +101,7 @@ function dlEntry(term, definition)
 
   dt.innerText = term;
   dd.innerText = definition;
+  // dt.setAttribute('href','www.google.com');
   return {'dt':dt, 'dd':dd};
 }
 //index for the gistPulls because I'm not sure how to keep track of items in array
@@ -109,10 +110,10 @@ var index = 0;
 function liGists(gists)
   {
     var dl = document.createElement('dl');
-    var entry = dlEntry('URL', gistPulls[index].url);
-    dl.appendChild(entry.dt);
-    dl.appendChild(entry.dd);
-    var entry = dlEntry('Description', gistPulls[index].description);
+    // var entry = dlEntry('URL', gistPulls[index].url);
+    // dl.appendChild(entry.dt);
+    // dl.appendChild(entry.dd);
+    var entry = dlEntry('Description: ', gistPulls[index].description);
     dl.appendChild(entry.dt);
     dl.appendChild(entry.dd);
     
@@ -142,10 +143,23 @@ function createGistsList(ul)
         favorite.setAttribute('id', index); 
         favorite.setAttribute("value", index)
         favorite.setAttribute("onclick", 'saveToFavorites(this)');
+
         var li = document.createElement('li');
+
+        var a = document.createElement('a');
+        a.setAttribute('href', gistPulls[index].url);
+        a.innerHTML = a.innerHTML + gistPulls[index].url
+
+        var br = document.createElement('br');
         li.appendChild(liGists(s));
+        li.appendChild(a);
+        li.appendChild(br);
         li.appendChild(favorite);
+        
         favorite.innerHTML = favorite.innerHTML + 'Add to favorites';
+        
+        
+
         ul.appendChild(li);
       }
       index++;

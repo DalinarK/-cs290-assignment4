@@ -34,8 +34,10 @@
         <input type="checkbox" id="filterBySQL" value="SQL" onclick = uncheckDefault() >Filter by SQL
         <br>
         <input type="checkbox" id="displayUnfiltered" value="All" checked = true>Search for all
+        <br>      
+        <input type= 'button' name='httppRequest' onclick='pullGithub()' value='Press this first to pull GIST data'>
         <br>
-        <input type= 'button' id='DisplayChoice' onclick='displayChoice()' value='Display Choice'>
+        <input type= 'button' id='DisplayChoice' onclick='displayChoice()' value='Search for Gists'>
         <br>
       </form>
        
@@ -44,7 +46,7 @@
 		<p></p>
 	<section>
 
-  	<section>
+<!--   	<section>
   		<input type= 'button' name='httppRequest' onclick='pullGithub()' value='Request GIST'>
     	<input type= 'button' name='getGitHub' onclick='saveGists()' value ='Save gists 1'>
 
@@ -52,7 +54,7 @@
     	<input type= 'button' name='getGitHub' onclick='displayGists()' value ='Display Gists'>
       <input type= 'button' name='getGitHub' onclick='printFavorites()' value ='Display Favorite Gists'>
       <input type= 'button' name='getGitHub' onclick='searchRuby()' value ='Search for Ruby only'>
-  	</section>
+  	</section> -->
 
     <section>
       <h1 class = "GistHeading">
