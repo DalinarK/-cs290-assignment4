@@ -209,21 +209,34 @@ function favoritesLiGists(gists)
     return dl;
   }
 
+
 function favoritesCreateGistsList(ul)
   {
     index = 0;
 
     for (var i = 0; i < favoriteGists.length; i++)
     {
+      var favorite = document.createElement("button");
+      favorite.setAttribute('name', i); 
+      favorite.setAttribute("value", i)
+      favorite.setAttribute("onclick", 'deleteFavorite(this)');
       var li = document.createElement('li');
       li.appendChild(favoritesLiGists(favoriteGists[i]));
+      li.appendChild(favorite);
+      favorite.innerHTML = favorite.innerHTML + 'Delete Favorite';
       ul.appendChild(li);
 
       index++;
     };
-
-
   }
+
+function deleteFavorite(what)
+{
+  console.log(favoriteGists[0]);
+  favoriteGists.splice(what.value,1);
+  localStorage.setItem('favoriteGists', JSON.stringify(favoriteGists));
+  console.log('great succes');
+}
 
   // Search Area
 //Got this code from the instructor https://piazza.com/class/i7nxjgezs1b2wt?cid=180
