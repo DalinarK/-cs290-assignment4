@@ -255,16 +255,15 @@ function printFavorites()
 function favoritesLiGists(gists)
   {
     var dl = document.createElement('dl');
-    var entry = dlEntry('URL', gistPulls[favoriteGists[index]].url);
-    dl.appendChild(entry.dt);
-    dl.appendChild(entry.dd);
+    // var entry = dlEntry('URL', gistPulls[favoriteGists[index]].url);
+    // dl.appendChild(entry.dt);
+    // dl.appendChild(entry.dd);
     var entry = dlEntry('Description', gistPulls[favoriteGists[index]].description);
     dl.appendChild(entry.dt);
     dl.appendChild(entry.dd);
     
     return dl;
   }
-
 
 
 
@@ -279,10 +278,22 @@ function favoritesCreateGistsList(ul)
       favorite.setAttribute('name', i); 
       favorite.setAttribute("value", i)
       favorite.setAttribute("onclick", 'deleteFavorite(this)');
+
       var li = document.createElement('li');
+
+      var a = document.createElement('a');
+      a.setAttribute('href', gistPulls[index].url);
+      a.innerHTML = a.innerHTML + gistPulls[index].url
+
+      var br = document.createElement('br');
       li.appendChild(favoritesLiGists(favoriteGists[i]));
+      li.appendChild(a);
+      li.appendChild(br);
       li.appendChild(favorite);
+
       favorite.innerHTML = favorite.innerHTML + 'Delete Favorite';
+
+
       ul.appendChild(li);
 
       index++;
