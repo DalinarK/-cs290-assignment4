@@ -185,12 +185,22 @@ function saveToFavorites(what)
 
   favoriteGists.push(what.value);
   localStorage.setItem('favoriteGists', JSON.stringify(favoriteGists));
+  printFavorites();
+}
+
+function deleteFavorite(what)
+{
+  console.log(favoriteGists[0]);
+  favoriteGists.splice(what.value,1);
+  localStorage.setItem('favoriteGists', JSON.stringify(favoriteGists));
+  console.log('great succes');
+  printFavorites();
 }
 
 function printFavorites()
 {
 
-  document.getElementById('gistsList').innerHTML = "";
+  document.getElementById('insertFavorites').innerHTML = "";
   
   for (var i = 0; i < favoriteGists.length; i++)
   {
@@ -243,13 +253,7 @@ function favoritesCreateGistsList(ul)
     };
   }
 
-function deleteFavorite(what)
-{
-  console.log(favoriteGists[0]);
-  favoriteGists.splice(what.value,1);
-  localStorage.setItem('favoriteGists', JSON.stringify(favoriteGists));
-  console.log('great succes');
-}
+
 
   // Search Area
 //Got this code from the instructor https://piazza.com/class/i7nxjgezs1b2wt?cid=180
@@ -376,21 +380,39 @@ function filteredCreateGistsList(ul)
 {
 
   index = 0;
+  var alreadyFavorited = 0;
 
   console.log(filteredGists.length);
   for (var i = 0; i < filteredGists.length; i++)
-  {
-    var favorite = document.createElement("button");
-    favorite.setAttribute('name', index); 
-    favorite.setAttribute('value', filteredGists[i]);
-    favorite.setAttribute('onclick', 'saveToFavorites(this)');
-    var li = document.createElement('li');
-    li.appendChild(filteredLiGists(filteredGists[i]));
-    li.appendChild(favorite);
-    favorite.innerHTML = favorite.innerHTML + 'Add to favorites';
-    ul.appendChild(li);
-
+   {
+    alreadyFavorited = 0;
+    for (var k = 0; k < favoriteGists.length; k++)
+    {
+      if (favoriteGists[k] == filteredGists[i])
+      {
+        alreadyFavorited = 1;
+      }
+    }
+      if (alreadyFavorited != 1)
+      {
+        var favorite = document.createElement("button");
+        favorite.setAttribute('name', index); 
+        favorite.setAttribute('value', filteredGists[i]);
+        favorite.setAttribute('onclick', 'saveToFavorites(this)');
+        var li = document.createElement('li');
+        li.appendChild(filteredLiGists(filteredGists[i]));
+        li.appendChild(favorite);
+        favorite.innerHTML = favorite.innerHTML + 'Add to favorites';
+        ul.appendChild(li);
+      }   
     index++;
+   } 
+
+  for (var i = 0; i < filteredGists.length; i++)
+  {
+
+
+    
   };
 
 
