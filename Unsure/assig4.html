@@ -10,17 +10,17 @@
 <script language="JavaScript">
 
 </script>
-	<section>
-		<h1> Human, how many pages do you wish to display?<h1>
-		<form>
-  		<select id = "displayPages" onchange="pullGithub()">
-  		  <option value = 1>Pick one</option>
-  		  <option value= 1>1</option>
-  		  <option value= 2>2</option>
-  		  <option value= 3>3</option>
-  		  <option value= 4>4</option>
-  		  <option value= 5>5</option>
-  		</select>
+  <section>
+    <h1> Human, how many pages do you wish to display?<h1>
+    <form>
+      <select id = "displayPages" onchange="test()">
+        <option value = 1>Pick one</option>
+        <option value= 1>1</option>
+        <option value= 2>2</option>
+        <option value= 3>3</option>
+        <option value= 4>4</option>
+        <option value= 5>5</option>
+      </select>
     </form>
       <h1> Human select the languages you wish to filter out.
       <form>  
@@ -35,26 +35,26 @@
         <br>
         <input type="checkbox" id="displayUnfiltered" value="All" checked = true>Search for all
         <br>      
-<!--         <input type= 'button' name='httppRequest' onclick='pullGithub()' value='Press this first to pull GIST data'>
-        <br> -->
+        <input type= 'button' name='httppRequest' onclick='pullGithub()' value='Press this first to pull GIST data'>
+        <br>
         <input type= 'button' id='DisplayChoice' onclick='displayChoice()' value='Search for Gists'>
         <br>
       </form>
        
-		
+    
      </h2>
-		<p></p>
-	<section>
+    <p></p>
+  <section>
 
-  	<section>
-  		<input type= 'button' name='httppRequest' onclick='pullGithub()' value='Request GIST'>
-    	<input type= 'button' name='getGitHub' onclick='saveGists()' value ='Save gists 1'>
+<!--    <section>
+      <input type= 'button' name='httppRequest' onclick='pullGithub()' value='Request GIST'>
+      <input type= 'button' name='getGitHub' onclick='saveGists()' value ='Save gists 1'>
 
-    	<input type= 'button' name='getGitHub' onclick='printLanguage()' value ='Print urls'>
-    	<input type= 'button' name='getGitHub' onclick='displayGists()' value ='Display Gists'>
+      <input type= 'button' name='getGitHub' onclick='printLanguage()' value ='Print urls'>
+      <input type= 'button' name='getGitHub' onclick='displayGists()' value ='Display Gists'>
       <input type= 'button' name='getGitHub' onclick='printFavorites()' value ='Display Favorite Gists'>
       <input type= 'button' name='getGitHub' onclick='searchRuby()' value ='Search for Ruby only'>
-  	</section>
+    </section> -->
 
     <section>
       <h1 class = "GistHeading">
@@ -69,13 +69,13 @@
 
     </section>
 
-  	<section>
+    <section>
       <h1 class = "GistHeading">
         Results
       </h1>
         
-  		<ul id= "gistsList" >
-  		</ul>
-  	</section>
+      <ul id= "gistsList" >
+      </ul>
+    </section>
 
   </html>

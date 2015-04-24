@@ -38,51 +38,40 @@ function pullGithub()
     var staticGitURL = 'https://api.github.com/users/koraktor/gists';
     
     //Sloppy way of requesting multiple pages
-    var gitURL = 'https://api.github.com/gists';
-    var gitURL2 = 'https://api.github.com/gists?per_page=60';
-    var gitURL3 = 'https://api.github.com/gists?per_page=90';
-    var gitURL4 = 'https://api.github.com/gists?page=4';
-    var gitURL5 = 'https://api.github.com/gists?page=5';
-
+    var gitURL = 'https://api.github.com/gists'
+    var gitURL2 = 'https://api.github.com/gists?page=2'
+    var gitURL3 = 'https://api.github.com/gists?page=3'
+    var gitURL4 = 'https://api.github.com/gists?page=4'
+    var gitURL5 = 'https://api.github.com/gists?page=5'
 
     httpRequest.onreadystatechange = alertContents;
-
-    if (document.getElementById('displayPages').value == 2)
-    httpRequest.open('GET', gitURL2);
-    else if (document.getElementById('displayPages').value == 3)
-    httpRequest.open('GET', gitURL3);
-    else
     httpRequest.open('GET', gitURL);
     httpRequest.send();
-    
-    function alertContents() 
-    {
-      if (httpRequest.readyState === 4) 
-      {
-        if (httpRequest.status === 200) 
-        {
-          console.log('Connected to github!');
-          gistPulls = JSON.parse(this.responseText);
-          console.log('Successfully pulled in data');
-        } else 
-        {
-          alert('There was a problem with the request.');
-        }
-      }
-    }
-
-    
+    saveGists();
     // httpRequest.onreadystatechange = alertContents;
     // httpRequest.open('GET', gitURL);
     // saveGists()
-    
+    // httpRequest.send();
 
-  
+//   }
+
+  function alertContents() 
+  {
+    if (httpRequest.readyState === 4) 
+    {
+      if (httpRequest.status === 200) 
+      {
+        console.log('Connected to github!');
+        gistPulls = JSON.parse(this.responseText);
+        console.log('Successfully pulled in data');
+      } else 
+      {
+        alert('There was a problem with the request.');
+      }
+    }
+  }
+
 }
-
-
-
-
 
  function saveGists()
   {
@@ -206,22 +195,11 @@ function test()
 
 function saveToFavorites(what)
 {
-  var alreadyAdded;
-  alreadyAdded = 0;
-  for (var counter = 0; counter < favoriteGists.length; counter++)
-  {
-    if (what.value == favoriteGists[counter])
-    {
-      alreadyAdded = 1;
-    }
-  }
 
-  if (!alreadyAdded)
-  {
-    favoriteGists.push(what.value);
-    localStorage.setItem('favoriteGists', JSON.stringify(favoriteGists));
-    printFavorites();
-  }
+
+  favoriteGists.push(what.value);
+  localStorage.setItem('favoriteGists', JSON.stringify(favoriteGists));
+  printFavorites();
 }
 
 function deleteFavorite(what)
@@ -267,9 +245,6 @@ function favoritesLiGists(gists)
     
     return dl;
   }
-
-
-
 
 
 function favoritesCreateGistsList(ul)
@@ -527,11 +502,10 @@ window.onload = function(){
     favoriteGists.length = 0;
   }
 
-
-  // if (gistPulls.length != 0)
-  // {
+  if (gistPulls.length != 0)
+  {
     printFavorites();
-  // }
+  }
     
 
   // localFilters = localStorage.getItem('filteredGists');
