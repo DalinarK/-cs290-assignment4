@@ -74,10 +74,6 @@ function pullGithub()
     
     // httpRequest.onreadystatechange = alertContents;
     // httpRequest.open('GET', gitURL);
-    // saveGists()
-    
-
-  
 }
 
 
@@ -133,6 +129,7 @@ function liGists(gists)
 
 function createGistsList(ul)
   {
+    saveGists();
     index = 0;
     var alreadyFavorited = 0;
 
@@ -403,10 +400,11 @@ function searchSQL()
 
 function filteredLiGists(gists)
 {
+  saveGists();
   var dl = document.createElement('dl');
-  var entry = dlEntry('URL', gistPulls[filteredGists[index]].url);
-  dl.appendChild(entry.dt);
-  dl.appendChild(entry.dd);
+  // var entry = dlEntry('URL', gistPulls[filteredGists[index]].url);
+  // dl.appendChild(entry.dt);
+  // dl.appendChild(entry.dd);
   var entry = dlEntry('Description', gistPulls[filteredGists[index]].description);
   dl.appendChild(entry.dt);
   dl.appendChild(entry.dd);
@@ -432,15 +430,28 @@ function filteredCreateGistsList(ul)
         alreadyFavorited = 1;
       }
     }
+
+
       if (alreadyFavorited != 1)
       {
         var favorite = document.createElement("button");
         favorite.setAttribute('name', index); 
         favorite.setAttribute('value', filteredGists[i]);
         favorite.setAttribute('onclick', 'saveToFavorites(this)');
+
         var li = document.createElement('li');
+
+        var a = document.createElement('a');
+        a.setAttribute('href', gistPulls[index].url);
+        a.innerHTML = a.innerHTML + gistPulls[index].url
+
+
+        var br = document.createElement('br');
         li.appendChild(filteredLiGists(filteredGists[i]));
+        li.appendChild(a);
+        li.appendChild(br);
         li.appendChild(favorite);
+
         favorite.innerHTML = favorite.innerHTML + 'Add to favorites';
         ul.appendChild(li);
       }   
