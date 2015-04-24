@@ -25,5 +25,14 @@ div.menu-bar li:hover > ul {
 strong {color: red;}
 /*.carrot {color: orange;}*/
 .spinach {color: green;}
+
 #first {font-style: italic;}
 p {color: blue;}
+
+form {font-size: medium;}
+
+.GistHeading {font-size: 200%;
+ }
+
+#insertFavorites {font-size: medium;
+}

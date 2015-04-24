@@ -1,9 +1,15 @@
 
-var gistPulls = null;
+
 var localGists = null;
 var localFavorites = null;
+var localFilters = null;
 
-var favoriteGists = null;
+//where all the GISTS are stored
+var gistPulls = null;
+//Array that holds the index of favorited GISTS in gistPulls
+var favoriteGists = new Array();
+//Array that holds the index of filtered GISTS
+var filteredGists = new Array();
 
 window.onload = function()
 {
@@ -138,7 +144,7 @@ function createGistsList(ul)
 
 function displayGists()
 {
-  document.getElementById('gistsList').innerHTML = "";
+
   if (gistPulls == null)
   {
     gistPulls = {'gists':[]};
@@ -154,8 +160,16 @@ function test()
   console.log(document.getElementById('displayPages').value)
 }
 
+
+
+
+
+//favorite Gist functions area
+
 function saveToFavorites(what)
 {
+
+
   favoriteGists.push(what.value);
   localStorage.setItem('favoriteGists', JSON.stringify(favoriteGists));
 }
@@ -178,39 +192,9 @@ function printFavorites()
     console.log('success!');
   }
 
-  favoritesCreateGistsList(document.getElementById('gistsList'));
+  favoritesCreateGistsList(document.getElementById('insertFavorites'));
   
 }
-
-window.onload = function(){
-  localGists = localStorage.getItem('savedGists');
-  if (gistPulls == null)
-    {
-      console.log('gistPulls is null, pulling from local');
-      gistPulls = JSON.parse(localGists);
-    }
-
-  localFavorites = localStorage.getItem('favoriteGists');
-  if (favoriteGists == null)
-  {
-    console.log('favorites gists is null pulling from local');
-    favoriteGists = JSON.parse(localFavorites);
-  }
-
-
-}
-
-function favoritesDlEntry(term, definition) 
-{
-  var dt = document.createElement('dt');
-  var dd = document.createElement('dd');
-
-  dt.innerText = term;
-  dd.innerText = definition;
-  return {'dt':dt, 'dd':dd};
-}
-//index for the gistPulls because I'm not sure how to keep track of items in array
-var index = 0;
 
 function favoritesLiGists(gists)
   {
@@ -240,3 +224,229 @@ function favoritesCreateGistsList(ul)
 
 
   }
+
+  // Search Area
+//Got this code from the instructor https://piazza.com/class/i7nxjgezs1b2wt?cid=180
+function searchPython()
+{
+  filteredGists.length = 0;
+
+  for(var i = 0 ; i < gistPulls.length; i++) 
+  {
+  //Rest of your code
+    for (var property in gistPulls[i].files) 
+    {
+      if (gistPulls[i].files.hasOwnProperty(property)) 
+      {
+        if(gistPulls[i].files[property].language == 'Python')
+        {
+          filteredGists.push(i);
+          console.log(filteredGists.length);
+          console.log('Great Success!');
+
+        }
+      }
+    }   
+  }
+   filteredCreateGistsList(document.getElementById('gistsList'));
+}
+
+
+function searchJSON()
+{
+
+  filteredGists.length = 0;
+
+  for(var i = 0 ; i < gistPulls.length; i++) 
+  {
+  //Rest of your code
+    for (var property in gistPulls[i].files) 
+    {
+      if (gistPulls[i].files.hasOwnProperty(property)) 
+      {
+        if(gistPulls[i].files[property].language == 'JSON')
+        {        
+          filteredGists.push(i);
+          console.log(filteredGists.length);
+          console.log('Great Success!');
+        }
+      }
+    }   
+
+  }
+  filteredCreateGistsList(document.getElementById('gistsList'));
+}
+
+
+
+function searchJavaScript()
+{
+
+  filteredGists.length = 0;
+
+  for(var i = 0 ; i < gistPulls.length; i++) 
+  {
+  //Rest of your code
+    for (var property in gistPulls[i].files) 
+    {
+      if (gistPulls[i].files.hasOwnProperty(property)) 
+      {
+        if(gistPulls[i].files[property].language == 'JavaScript')
+        {        
+          filteredGists.push(i);
+          console.log(filteredGists.length);
+          console.log('Great Success!');
+        }
+      }
+    }   
+
+  }
+  filteredCreateGistsList(document.getElementById('gistsList'));
+}
+
+function searchSQL()
+{
+
+  filteredGists.length = 0;
+
+  for(var i = 0 ; i < gistPulls.length; i++) 
+  {
+  //Rest of your code
+    for (var property in gistPulls[i].files) 
+    {
+      if (gistPulls[i].files.hasOwnProperty(property)) 
+      {
+        if(gistPulls[i].files[property].language == 'SQL')
+        {        
+          filteredGists.push(i);
+          console.log(filteredGists.length);
+          console.log('Great Success!');
+        }
+      }
+    }   
+
+  }
+  filteredCreateGistsList(document.getElementById('gistsList'));
+}
+
+
+
+
+function filteredLiGists(gists)
+{
+  var dl = document.createElement('dl');
+  var entry = dlEntry('URL', gistPulls[filteredGists[index]].url);
+  dl.appendChild(entry.dt);
+  dl.appendChild(entry.dd);
+  var entry = dlEntry('Description', gistPulls[filteredGists[index]].description);
+  dl.appendChild(entry.dt);
+  dl.appendChild(entry.dd);
+  
+  return dl;
+}
+
+
+function filteredCreateGistsList(ul)
+{
+
+  index = 0;
+
+  console.log(filteredGists.length);
+  for (var i = 0; i < filteredGists.length; i++)
+  {
+    var favorite = document.createElement("button");
+    favorite.setAttribute('id', index); 
+    favorite.setAttribute('value', index)
+    favorite.setAttribute('onclick', 'saveToFavorites(this)');
+    var li = document.createElement('li');
+    li.appendChild(filteredLiGists(filteredGists[i]));
+    li.appendChild(favorite);
+    favorite.innerHTML = favorite.innerHTML + 'Add to favorites';
+    ul.appendChild(li);
+
+    index++;
+  };
+
+
+}
+
+//This section is for the interface
+
+function uncheckDefault()
+{
+  document.getElementById('displayUnfiltered').checked = false;
+}
+
+function displayChoice()
+{
+
+  document.getElementById('gistsList').innerHTML = "";
+
+  if (document.getElementById('displayUnfiltered').checked)
+  {
+    console.log('Displaying all results');
+    displayGists();
+  }
+
+  if (document.getElementById('filterByPython').checked)
+  {
+    console.log('Displaying JSON');
+    searchPython();
+
+  }
+
+  if (document.getElementById('filterByJSON').checked)
+  {
+    console.log('Displaying JSON');
+    searchJSON();
+
+  }
+
+  if (document.getElementById('filterByJavaScript').checked)
+  {
+    console.log('Displaying JavaScript');
+    searchJavaScript();
+
+  }
+
+  if (document.getElementById('filterBySQL').checked)
+  {
+    console.log('Displaying SQL');
+    searchSQL();
+
+  }
+
+
+
+  
+}
+
+window.onload = function(){
+  localGists = localStorage.getItem('savedGists');
+  if (gistPulls == null)
+    {
+      console.log('gistPulls is null, pulling from local');
+      gistPulls = JSON.parse(localGists);
+    }
+
+  localFavorites = localStorage.getItem('favoriteGists');
+  if (localFavorites)
+  {
+    console.log('favorites gists is null pulling from local');
+    favoriteGists = JSON.parse(localFavorites);
+  }
+  else 
+  {
+    favoriteGists.length = 0;
+  }
+
+  printFavorites();
+
+  // localFilters = localStorage.getItem('filteredGists');
+  // if (filteredGists == null)
+  // {
+  //   console.log('filtered gists is null pulling from local');
+  //   filteredGists = JSON.parse(localFavorites);
+  // }
+  
+}
